@@ -76,6 +76,14 @@ curl -s localhost:3000/api/cart -H "Authorization: Bearer $TOKEN"
 | `npm run lint`      | Pasa ESLint                                       |
 | `npm run format`    | Formatea el código con Prettier                   |
 
+## Servidor MCP (sesión 3)
+
+`mcp/servidor.ts` expone la API como herramientas para Claude Code: buscar productos, ver el carrito y los pedidos, añadir al carrito y hacer un pedido. Necesita la API arrancada (`npm run dev`) y se conecta como `ana@tienda.test`. Se puede cambiar con las variables `TIENDA_URL`, `TIENDA_EMAIL` y `TIENDA_PASSWORD`.
+
+```bash
+claude mcp add --scope project tienda -- node mcp/servidor.ts
+```
+
 ## Ramas
 
 - `main`: punto de partida del curso.
