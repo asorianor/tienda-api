@@ -200,6 +200,25 @@ describe('cupones', () => {
     expect(res.status).toBe(200);
   });
 
+  it('el total no queda en negativo con un cupón fijo mayor que el subtotal', async () => {
+    await addToCart(ANA, 4);
+    await api()
+      .post('/api/cart/coupon')
+      .set(await authHeader(ANA))
+      .send({ code: 'REGALO25' });
+
+    const res = await api()
+      .get('/api/cart')
+      .set(await authHeader(ANA));
+
+    expect(res.body).toMatchObject({
+      couponCode: 'REGALO25',
+      subtotalCents: 1295,
+      discountCents: 1295,
+      totalCents: 0,
+    });
+  });
+
   it('responde 422 si no se llega al pedido mínimo', async () => {
     await addToCart(ANA, 4);
 
