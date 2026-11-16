@@ -97,8 +97,12 @@ Si te has quedado atrás en la sesión 1, trae a tu rama los archivos de la solu
 git checkout origin/solucion/sesion-1 -- .
 ```
 
-Para empezar la sesión 3 desde la solución de la sesión 2, crea tu rama a partir de ella:
+Para empezar la sesión 3 desde la solución de la sesión 2, crea tu rama a partir de tu `main`, trae los archivos de la solución y guárdalos en un commit. Si tienes cambios sin guardar, apártalos antes con `git stash -u`:
 
 ```bash
-git switch -c feat/pedidos-y-carrito origin/solucion/sesion-2
+git switch -c feat/pedidos-y-carrito main
+git checkout origin/solucion/sesion-2 -- .
+git commit -m "feat: incorporar la solución de la sesión 2"
 ```
+
+No crees la rama directamente desde `origin/solucion/sesion-2`. En una copia hecha desde la plantilla, cada rama es un commit sin historia común con `main`: el agente revisor no podría comparar tu rama con `main` y GitHub no te dejaría abrir la pull request.
